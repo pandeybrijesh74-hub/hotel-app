@@ -1,4 +1,4 @@
-
+<!-- <app-home></app-home> -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Hotel App</a>
@@ -22,4 +22,33 @@
   </div>
 </nav>
 
-<p>reservation-list works!</p>
+<div class="container mt-4">
+  <h2>Reservation-list</h2>
+  <table class="table table-bordered table-striped table-success" *ngIf="reservations.length > 0; else noReservations">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Check In Date</th>
+      <th>Check Out Date</th>
+      <th>Room No</th>
+      <th>Action</th>
+    </tr>   
+    <tr *ngFor="let reservation of reservations">
+      <td>{{reservation.id}}</td>
+      <td>{{reservation.guestName}}</td>
+      <td>{{reservation.checkInDate}}</td>
+      <td>{{reservation.checkOutDate}}</td>
+      <td>{{reservation.roomNumber}}</td>
+      <td>
+          <button class="btn btn-primary btn-sm mx-1 my-1" [routerLink]="['/edit-reservation',reservation.id]">Edit</button>
+          <button class="btn btn-danger btn-sm mx-1 my-1" (click) = "deleteReservation(reservation.id)">Delete</button> 
+      </td>
+    </tr>
+
+  </table>
+  
+  <ng-template #noReservations>
+    <p>No reservations found.</p>
+  </ng-template>
+
+</div>
