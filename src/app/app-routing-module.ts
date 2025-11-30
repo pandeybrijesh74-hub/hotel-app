@@ -6,7 +6,7 @@ import { ReservationList } from './reservation-list/reservation-list';
 import { HomeComponent } from './home-component/home-component';
 
 const routes: Routes = [
-  {path: '', component:ReservationList},
+  {path: '', component:HomeComponent},
   {path: 'create-reservation',component:ReservationForm},
   {path: 'reservation-list',component:ReservationList},
   {path: 'edit-reservation/:id',component:ReservationForm }
