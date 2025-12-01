@@ -6,18 +6,20 @@
   <table class="table table-bordered table-striped table-success" *ngIf="reservations.length > 0; else noReservations">
     <tr>
       <th>ID</th>
-      <th>Name</th>
-      <th>Check In Date</th>
-      <th>Check Out Date</th>
+      <th>Guest</th>
+      <th>Email</th>
       <th>Room No</th>
+      <th>Check-In</th>
+      <th>Check-Out</th>
       <th>Action</th>
     </tr>   
     <tr *ngFor="let reservation of reservations">
       <td>{{reservation.id}}</td>
       <td>{{reservation.guestName}}</td>
-      <td>{{reservation.checkInDate}}</td>
-      <td>{{reservation.checkOutDate}}</td>
+      <td>{{reservation.guestEmail}}</td>
       <td>{{reservation.roomNumber}}</td>
+      <td>{{reservation.checkInDate}}</td>
+      <td>{{reservation.checkOutDate}}</td>      
       <td>
           <button class="btn btn-primary btn-sm mx-1 my-1" [routerLink]="['/edit-reservation',reservation.id]">Edit</button>
           <button class="btn btn-danger btn-sm mx-1 my-1" (click) = "deleteReservation(reservation.id)">Delete</button> 

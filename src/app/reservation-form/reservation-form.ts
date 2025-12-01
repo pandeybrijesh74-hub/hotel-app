@@ -37,10 +37,13 @@ export class ReservationForm implements OnInit {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     
     if (id) {
-      let reservation = this.reservationService.getReservationById(id);        
-      if (reservation) {
-        this.reservationForm.patchValue(reservation);
-      }
+      this.reservationService.getReservationById(id).subscribe(reservation=>{
+        console.log(reservation);
+        if (reservation) {
+          this.reservationForm.patchValue(reservation);
+        }
+      });        
+     
     }
   }
 
@@ -50,9 +53,13 @@ export class ReservationForm implements OnInit {
     if (this.reservationForm.valid) {
       let id = this.activatedRoute.snapshot.paramMap.get('id');
       if (id) {
-        this.reservationService.updateReservation(id,this.reservationForm.value);        
+        this.reservationService.updateReservation(id,this.reservationForm.value).subscribe(()=>{
+          console.log("Reservation Updated Successfully");
+        });        
       }else {
-         this.reservationService.addReservation(this.reservationForm.value);
+         this.reservationService.addReservation(this.reservationForm.value).subscribe(()=>{
+            console.log("Reservation Added Successfully");
+         });
       }        
       this.router.navigate(['/reservation-list']);
     }
